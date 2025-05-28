@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["CriterionStatus"],"struct":["CsvCheckRequest","EligibilityCheckInput","EligibilityCheckResult","EligibilityCriterionResult"]};

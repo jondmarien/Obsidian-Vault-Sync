@@ -1,0 +1,32 @@
+{
+	"nodes":[
+		{"id":"57e720e7bf0f9e54","type":"group","x":-1800,"y":-1800,"width":1421,"height":1363,"label":"Differences between C and Assembly"},
+		{"id":"7eb3929bfc983c07","type":"group","x":-280,"y":-1400,"width":921,"height":718,"label":"Memory References"},
+		{"id":"26b68b562b7b9e0b","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/Assembly/Global Assembly Vars.png","x":-1779,"y":-1760,"width":400,"height":160},
+		{"id":"14683760517af36b","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/C/Global C Vars.png","x":-1779,"y":-1480,"width":400,"height":223},
+		{"id":"443d1c4d37b20c41","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/Stack of a program during execution.png","x":-79,"y":-940,"width":499,"height":248},
+		{"id":"ef0acd548af007a5","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/Disassembly Graph for Ifs.png","x":-799,"y":-1262,"width":400,"height":375},
+		{"id":"edad9abf2dcb9297","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/Assembly/Local Assembly Vars.png","x":-1299,"y":-1780,"width":400,"height":201},
+		{"id":"a92693d628e185ff","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/C/Local C Vars.png","x":-1299,"y":-1480,"width":400,"height":236},
+		{"id":"8ce1cdf05d31baca","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/Assembly/If in Assembly.png","x":-1299,"y":-1200,"width":400,"height":250},
+		{"id":"bb9189742913ede0","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/Disassembly Graph for Loops.png","x":-799,"y":-844,"width":400,"height":325},
+		{"id":"c22b79160d8fa6ab","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/C/If in C.png","x":-1780,"y":-1162,"width":400,"height":212},
+		{"id":"097b219a872ea8d4","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/linuxFlexibleAddressSpaceLayout.png","x":221,"y":-1350,"width":400,"height":328},
+		{"id":"c82db4b168cd1a31","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/C/Loop in C.png","x":-1779,"y":-860,"width":399,"height":178},
+		{"id":"056bececaef95460","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/C/Calling Functions in C.png","x":-1774,"y":-554,"width":399,"height":97},
+		{"id":"874e4de055569ce0","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/Assembly/Loop in Assembly.png","x":-1299,"y":-912,"width":400,"height":281},
+		{"id":"45bcda6254e80eec","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/Memory Reference Diagram 1.jpg","x":-260,"y":-1380,"width":400,"height":387},
+		{"id":"fcbedbc165d0a793","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 2 Notes/Assembly/Calling Functions in Assembly.png","x":-1299,"y":-538,"width":398,"height":81}
+	],
+	"edges":[
+		{"id":"accf1b3b438bc3e1","fromNode":"14683760517af36b","fromSide":"right","toNode":"a92693d628e185ff","toSide":"left"},
+		{"id":"8b8d68f7ee79e0f6","fromNode":"c22b79160d8fa6ab","fromSide":"right","toNode":"8ce1cdf05d31baca","toSide":"left"},
+		{"id":"fda145178e684620","fromNode":"c82db4b168cd1a31","fromSide":"right","toNode":"874e4de055569ce0","toSide":"left"},
+		{"id":"2d74261e28a01c76","fromNode":"8ce1cdf05d31baca","fromSide":"right","toNode":"ef0acd548af007a5","toSide":"left"},
+		{"id":"c346106b6073878f","fromNode":"874e4de055569ce0","fromSide":"right","toNode":"bb9189742913ede0","toSide":"left"},
+		{"id":"0ddd3bacc0010657","fromNode":"056bececaef95460","fromSide":"right","toNode":"fcbedbc165d0a793","toSide":"left"},
+		{"id":"a84210067698bfc3","fromNode":"45bcda6254e80eec","fromSide":"right","toNode":"097b219a872ea8d4","toSide":"left"},
+		{"id":"b7c17adba8df8a7b","fromNode":"26b68b562b7b9e0b","fromSide":"right","toNode":"edad9abf2dcb9297","toSide":"left"},
+		{"id":"7deae5ea29ac0296","fromNode":"097b219a872ea8d4","fromSide":"bottom","toNode":"443d1c4d37b20c41","toSide":"right"}
+	]
+}

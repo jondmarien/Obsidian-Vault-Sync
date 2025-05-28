@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["check_criterion","check_eligible_country","check_employment_status","check_equipment_requirements","check_minimum_age","check_previous_wins","check_skills_requirement","check_time_commitment","check_university_enrollment","perform_all_checks"],"struct":["EligibilityConfig"]};

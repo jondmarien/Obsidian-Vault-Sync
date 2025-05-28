@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Uploads a profile picture to S3-compatible storage and returns its public URL."><title>upload_profile_picture in judgeflow_backend::services::s3_service - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="judgeflow_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../../static.files/storage-3a5871a4.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../judgeflow_backend/index.html">judgeflow_<wbr>backend</a><span class="version">0.2.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">upload_<wbr>profile_<wbr>picture</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#arguments" title="Arguments">Arguments</a></li><li><a href="#returns" title="Returns">Returns</a></li><li><a href="#errors" title="Errors">Errors</a></li><li><a href="#example" title="Example">Example</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In judgeflow_<wbr>backend::<wbr>services::<wbr>s3_<wbr>service</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">judgeflow_backend</a>::<wbr><a href="../index.html">services</a>::<wbr><a href="index.html">s3_service</a></div><h1>Function <span class="fn">upload_profile_picture</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/judgeflow_backend/services/s3_service.rs.html#111-145">Source</a> </span></div><pre class="rust item-decl"><code>pub async fn upload_profile_picture(
+    config: &amp;<a class="struct" href="../../route_models/s3_models/struct.S3Config.html" title="struct judgeflow_backend::route_models::s3_models::S3Config">S3Config</a>,
+    file_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/1.86.0/std/primitive.str.html">str</a>,
+    file_bytes: <a class="struct" href="https://doc.rust-lang.org/1.86.0/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.86.0/std/primitive.u8.html">u8</a>&gt;,
+    content_type: &amp;<a class="primitive" href="https://doc.rust-lang.org/1.86.0/std/primitive.str.html">str</a>,
+) -&gt; <a class="type" href="https://docs.rs/anyhow/1.0.98/anyhow/type.Result.html" title="type anyhow::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/1.86.0/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Uploads a profile picture to S3-compatible storage and returns its public URL.</p>
+<p>This function handles the entire process of uploading a file to S3, including:</p>
+<ol>
+<li>Setting up the S3 client with the provided credentials</li>
+<li>Uploading the file to the specified bucket</li>
+<li>Setting appropriate content type and ACLs</li>
+<li>Generating a public URL for the uploaded file</li>
+</ol>
+<h2 id="arguments"><a class="doc-anchor" href="#arguments">§</a>Arguments</h2>
+<ul>
+<li><code>config</code> - S3 configuration containing credentials and bucket information</li>
+<li><code>file_name</code> - Name to give the uploaded file (will be prefixed with ‘profile_pictures/’)</li>
+<li><code>file_bytes</code> - Raw bytes of the file to upload</li>
+<li><code>content_type</code> - MIME type of the file (e.g., ‘image/jpeg’, ‘image/png’)</li>
+</ul>
+<h2 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h2>
+<ul>
+<li><code>Ok(String)</code> - Public URL of the uploaded file on success</li>
+<li><code>Err(anyhow::Error)</code> - Error if the upload fails</li>
+</ul>
+<h2 id="errors"><a class="doc-anchor" href="#errors">§</a>Errors</h2>
+<p>Returns an error if:</p>
+<ul>
+<li>The S3 client cannot be configured</li>
+<li>The file upload fails</li>
+<li>The public URL cannot be generated</li>
+</ul>
+<h2 id="example"><a class="doc-anchor" href="#example">§</a>Example</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>config = S3Config {
+    access_key: <span class="string">"your_access_key"</span>.to_string(),
+    secret_key: <span class="string">"your_secret_key"</span>.to_string(),
+    region: <span class="string">"us-east-1"</span>.to_string(),
+    bucket: <span class="string">"profile-pictures"</span>.to_string(),
+    endpoint: <span class="string">"https://s3.amazonaws.com"</span>.to_string(),
+};
+
+<span class="kw">let </span>file_data = <span class="macro">vec!</span>[<span class="number">0u8</span>; <span class="number">1024</span>]; <span class="comment">// Example file data
+</span><span class="kw">let </span>url = upload_profile_picture(
+    <span class="kw-2">&amp;</span>config,
+    <span class="string">"user123.jpg"</span>,
+    file_data,
+    <span class="string">"image/jpeg"
+</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+<span class="macro">println!</span>(<span class="string">"Uploaded to: {}"</span>, url);</code></pre></div>
+</div></details></section></div></main></body></html>

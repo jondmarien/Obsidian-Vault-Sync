@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ClerkWebhookEvent"],"struct":["ClerkWebhookPayload","DiscordMessage","EmailAddress","UserCreatedData","UserDeletedData","UserUpdatedData","WebhookResponse"]};

@@ -1,0 +1,41 @@
+{
+	"nodes":[
+		{"id":"f071a1fa656e9374","type":"group","x":-4220,"y":4961,"width":15669,"height":10768,"label":"Instructions"},
+		{"id":"28b98de1538cb891","type":"group","x":1082,"y":-912,"width":3656,"height":5461,"label":"Functions"},
+		{"id":"2d10b269e849216d","type":"group","x":-4220,"y":-1004,"width":4658,"height":3749,"label":"Basic Information"},
+		{"id":"496a3f08dd0c4311","type":"group","x":-4220,"y":3014,"width":5001,"height":1621,"label":"Memory"},
+		{"id":"1e7ce8b5e35f1497","type":"group","x":-914,"y":-912,"width":1352,"height":998,"label":"Endian"},
+		{"id":"8050d6de66d0cc53","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/eflags Register.png","x":5063,"y":-7458,"width":6954,"height":2275},
+		{"id":"157be8a3e6b0d4ae","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Decimal To Hex to Binary.png","x":-4190,"y":-984,"width":1740,"height":880},
+		{"id":"4f9cbfe8d63427f5","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Registers.png","x":-4190,"y":623,"width":1739,"height":917},
+		{"id":"482d6bdf424c315b","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/NOTANDXOR.png","x":-4200,"y":-24,"width":1750,"height":600},
+		{"id":"9184ec5936d2d344","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Special Registers.png","x":-2400,"y":624,"width":1788,"height":916},
+		{"id":"ae99d245dd6c3aca","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Arithmetic Instructions.png","x":5653,"y":4981,"width":5715,"height":2506},
+		{"id":"743ad973a7f644cc","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Instruction List.png","x":1409,"y":5045,"width":4014,"height":2442},
+		{"id":"749a286ea05c1ea2","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Jump Instructions.png","x":-4196,"y":9958,"width":10176,"height":5661},
+		{"id":"ad552407c1a7c4a6","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Loops.png","x":6359,"y":10174,"width":5070,"height":5231},
+		{"id":"293910ae64bc1699","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Arithmetic Instructions 2.png","x":5594,"y":7959,"width":5835,"height":1372},
+		{"id":"9a8b880c2132b6a6","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Logical Instructions 2.png","x":763,"y":7614,"width":4700,"height":2062},
+		{"id":"fc5849733f8a3a4f","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Memory Instructions.png","x":-4200,"y":5045,"width":5396,"height":2409},
+		{"id":"b85b00e8b8154b94","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Logical Instructions.png","x":-4196,"y":7614,"width":4697,"height":2054},
+		{"id":"54c8a43978cc3afc","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Big Endian'.png","x":-894,"y":-328,"width":1194,"height":394},
+		{"id":"46121e1e2c8d981d","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Little Endian.png","x":-894,"y":-892,"width":1312,"height":477},
+		{"id":"25fec8a46ce6f461","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Word Values.png","x":-2400,"y":171,"width":1717,"height":405},
+		{"id":"6ff8ece1f7991256","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Relational Meanings.png","x":-2400,"y":-464,"width":1393,"height":578},
+		{"id":"1817e626cee1f485","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Example.png","x":-1691,"y":3042,"width":2457,"height":707},
+		{"id":"78dd0cfc31b075a5","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Addressing Memory.png","x":-4153,"y":3042,"width":2353,"height":599},
+		{"id":"22493c1aea3fc2ed","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Example with Memory.png","x":-4091,"y":3817,"width":4799,"height":712},
+		{"id":"0ba7bec50ad10ce6","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Flags.png","x":-2400,"y":-984,"width":1393,"height":480},
+		{"id":"45c046425db8c5de","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/x86 Registers Map.png","x":5055,"y":171,"width":6962,"height":4574},
+		{"id":"dcad44b0275d216a","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Function Epilogue.png","x":1102,"y":1767,"width":3616,"height":2762},
+		{"id":"7303d659bd8ab305","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Function Prologue.png","x":1144,"y":-892,"width":3531,"height":2467},
+		{"id":"b2d240f700b32dc3","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/General Purpose Registers Chart.png","x":5220,"y":-4909,"width":6633,"height":4975},
+		{"id":"03800a403ab6f720","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Syntax.png","x":-4200,"y":1712,"width":3895,"height":1033},
+		{"id":"a5c81eb966dc8a31","type":"file","file":"Resources/Sheridan Classes/Sem 6/Secure Software Dev/Week 1 Notes/Viewing Compile Code.png","x":-3970,"y":-5897,"width":8776,"height":4592}
+	],
+	"edges":[
+		{"id":"bd3ff7fc4fb4c88c","fromNode":"b85b00e8b8154b94","fromSide":"right","toNode":"9a8b880c2132b6a6","toSide":"left"},
+		{"id":"f1342daed7bc07cb","fromNode":"ae99d245dd6c3aca","fromSide":"bottom","toNode":"293910ae64bc1699","toSide":"top"},
+		{"id":"3c62fa096d3fe8cf","fromNode":"749a286ea05c1ea2","fromSide":"right","toNode":"ad552407c1a7c4a6","toSide":"left"}
+	]
+}

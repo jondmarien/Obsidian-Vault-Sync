@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Project Data Processing Module"><title>judgeflow_backend::utils::csv_processing::project_processing - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="judgeflow_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../../../static.files/storage-3a5871a4.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../judgeflow_backend/index.html">judgeflow_<wbr>backend</a><span class="version">0.2.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Module project_<wbr>processing</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#project-data-processing-module" title="Project Data Processing Module">Project Data Processing Module</a><ul><li><a href="#features" title="Features">Features</a></li><li><a href="#key-components" title="Key Components">Key Components</a></li><li><a href="#example-basic-usage" title="Example: Basic Usage">Example: Basic Usage</a></li><li><a href="#advanced-usage-processing-multiple-files" title="Advanced Usage: Processing Multiple Files">Advanced Usage: Processing Multiple Files</a></li><li><a href="#viewing-documentation" title="Viewing Documentation">Viewing Documentation</a></li></ul></li></ul><h3><a href="#structs">Module Items</a></h3><ul class="block"><li><a href="#structs" title="Structs">Structs</a></li><li><a href="#functions" title="Functions">Functions</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="../index.html">In judgeflow_<wbr>backend::<wbr>utils::<wbr>csv_<wbr>processing</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../../index.html">judgeflow_backend</a>::<wbr><a href="../../index.html">utils</a>::<wbr><a href="../index.html">csv_processing</a></div><h1>Module <span>project_processing</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../../src/judgeflow_backend/utils\csv_processing/project_processing.rs.html#1-557">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="project-data-processing-module"><a class="doc-anchor" href="#project-data-processing-module">§</a>Project Data Processing Module</h2>
+<p>This module provides comprehensive functionality for processing project data from CSV files.
+It handles parsing, validation, transformation, and deduplication of project submissions.</p>
+<h3 id="features"><a class="doc-anchor" href="#features">§</a>Features</h3>
+<ul>
+<li>Flexible CSV parsing with automatic header detection</li>
+<li>Structured data transformation into Rust types</li>
+<li>Deduplication of project entries</li>
+<li>Team member consolidation across duplicate entries</li>
+<li>Comprehensive error handling and validation</li>
+</ul>
+<h3 id="key-components"><a class="doc-anchor" href="#key-components">§</a>Key Components</h3>
+<ul>
+<li><code>Project</code>: Represents a project submission with all associated metadata</li>
+<li><code>TeamMember</code>: Represents a team member associated with a project</li>
+<li><code>CsvProcessingError</code>: Custom error type for CSV processing operations</li>
+</ul>
+<h3 id="example-basic-usage"><a class="doc-anchor" href="#example-basic-usage">§</a>Example: Basic Usage</h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
+<span class="kw">use </span>judgeflow_backend::utils::csv_processing::project_processing;
+ 
+<span class="comment">// Process a CSV file containing project information
+</span><span class="kw">let </span>projects = project_processing::process_projects_csv(Path::new(<span class="string">"data/projects-info.csv"</span>))<span class="question-mark">?</span>;
+ 
+<span class="comment">// Iterate through projects
+</span><span class="kw">for </span>project <span class="kw">in </span>projects {
+    <span class="macro">println!</span>(<span class="string">"Project: {}"</span>, 
+        project.fields.get(<span class="string">"Project Title"</span>).unwrap_or(<span class="kw-2">&amp;</span><span class="string">"Untitled"</span>.to_string()));
+     
+    <span class="comment">// Access team members
+    </span><span class="macro">println!</span>(<span class="string">"Team Members ({}):"</span>, project.team_members.len());
+    <span class="kw">for </span>(i, member) <span class="kw">in </span>project.team_members.iter().enumerate() {
+        <span class="macro">println!</span>(<span class="string">"  {}. {} {} &lt;{}&gt;"</span>, 
+            i + <span class="number">1</span>, member.first_name, member.last_name, member.email);
+    }
+     
+    <span class="comment">// Access other project fields
+    </span><span class="kw">if let </span><span class="prelude-val">Some</span>(desc) = project.fields.get(<span class="string">"About The Project"</span>) {
+        <span class="macro">println!</span>(<span class="string">"Description: {}..."</span>, desc.chars().take(<span class="number">100</span>).collect::&lt;String&gt;());
+    }
+     
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(url) = project.fields.get(<span class="string">"Submission Url"</span>) {
+        <span class="macro">println!</span>(<span class="string">"View project at: {}"</span>, url);
+    }
+    <span class="macro">println!</span>();
+}</code></pre></div>
+<h3 id="advanced-usage-processing-multiple-files"><a class="doc-anchor" href="#advanced-usage-processing-multiple-files">§</a>Advanced Usage: Processing Multiple Files</h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
+<span class="kw">use </span>std::collections::HashMap;
+<span class="kw">use </span>judgeflow_backend::utils::csv_processing::project_processing;
+
+<span class="kw">let </span>files = [<span class="string">"data/projects-day1.csv"</span>, <span class="string">"data/projects-day2.csv"</span>];
+<span class="kw">let </span><span class="kw-2">mut </span>all_projects = Vec::new();
+ 
+<span class="comment">// Process multiple CSV files and combine results
+</span><span class="kw">for </span>file <span class="kw">in </span><span class="kw-2">&amp;</span>files {
+    <span class="kw">match </span>project_processing::process_projects_csv(Path::new(file)) {
+        <span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>projects) =&gt; all_projects.append(<span class="kw-2">&amp;mut </span>projects),
+        <span class="prelude-val">Err</span>(e) =&gt; <span class="macro">eprintln!</span>(<span class="string">"Warning: Failed to process {}: {}"</span>, file, e),
+    }
+}
+
+<span class="macro">println!</span>(<span class="string">"Processed {} projects from {} files"</span>, all_projects.len(), files.len());</code></pre></div>
+<h3 id="viewing-documentation"><a class="doc-anchor" href="#viewing-documentation">§</a>Viewing Documentation</h3>
+<p>For complete documentation including private items, run:</p>
+<div class="example-wrap"><pre class="language-bash"><code>cargo doc --open --document-private-items --no-deps --package judgeflow-backend</code></pre></div></div></details><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><dl class="item-table"><dt><a class="struct" href="struct.CsvProcessingError.html" title="struct judgeflow_backend::utils::csv_processing::project_processing::CsvProcessingError">CsvProcessing<wbr>Error</a></dt><dd>Error type for CSV processing operations.</dd><dt><a class="struct" href="struct.Project.html" title="struct judgeflow_backend::utils::csv_processing::project_processing::Project">Project</a></dt><dd>Represents a project submission with all associated metadata and team members.</dd><dt><a class="struct" href="struct.TeamMember.html" title="struct judgeflow_backend::utils::csv_processing::project_processing::TeamMember">Team<wbr>Member</a></dt><dd>Represents a team member associated with a project submission.</dd></dl><h2 id="functions" class="section-header">Functions<a href="#functions" class="anchor">§</a></h2><dl class="item-table"><dt><a class="fn" href="fn.print_projects_info.html" title="fn judgeflow_backend::utils::csv_processing::project_processing::print_projects_info">print_<wbr>projects_<wbr>info</a></dt><dt><a class="fn" href="fn.process_projects_csv.html" title="fn judgeflow_backend::utils::csv_processing::project_processing::process_projects_csv">process_<wbr>projects_<wbr>csv</a></dt><dd>Processes a CSV file containing project submissions into structured <code>Project</code> objects.</dd><dt><a class="fn" href="fn.process_projects_info.html" title="fn judgeflow_backend::utils::csv_processing::project_processing::process_projects_info">process_<wbr>projects_<wbr>info</a></dt><dd>Reads the projects-info.csv file and prints each record to the console.</dd><dt><a class="fn" href="fn.read_csv_flexible.html" title="fn judgeflow_backend::utils::csv_processing::project_processing::read_csv_flexible">read_<wbr>csv_<wbr>flexible</a><span title="Restricted Visibility">&nbsp;🔒</span> </dt><dd>Reads CSV data with flexible column handling</dd><dt><a class="fn" href="fn.transform_record.html" title="fn judgeflow_backend::utils::csv_processing::project_processing::transform_record">transform_<wbr>record</a><span title="Restricted Visibility">&nbsp;🔒</span> </dt><dd>Transforms a raw record into a structured Project</dd></dl></section></div></main></body></html>

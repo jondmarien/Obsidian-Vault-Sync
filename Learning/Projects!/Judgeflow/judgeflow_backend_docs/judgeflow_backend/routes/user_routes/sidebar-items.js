@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["get_user","update_user","user_router"],"struct":["ProfilePictureUpdate"]};

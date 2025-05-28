@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Parses a CSV file containing hackathon registrant data into `EligibilityCheckInput` records."><title>read_hackathon_registrants_csv in judgeflow_backend::utils::eligibility::eligibility_csv - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="judgeflow_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../../../static.files/storage-3a5871a4.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../judgeflow_backend/index.html">judgeflow_<wbr>backend</a><span class="version">0.2.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">read_<wbr>hackathon_<wbr>registrants_<wbr>csv</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#parameters" title="Parameters">Parameters</a></li><li><a href="#returns" title="Returns">Returns</a></li><li><a href="#implementation-details" title="Implementation Details">Implementation Details</a></li><li><a href="#error-handling" title="Error Handling">Error Handling</a></li><li><a href="#example" title="Example">Example</a></li><li><a href="#csv-format-requirements" title="CSV Format Requirements">CSV Format Requirements</a></li><li><a href="#notes" title="Notes">Notes</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In judgeflow_<wbr>backend::<wbr>utils::<wbr>eligibility::<wbr>eligibility_<wbr>csv</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../../index.html">judgeflow_backend</a>::<wbr><a href="../../index.html">utils</a>::<wbr><a href="../index.html">eligibility</a>::<wbr><a href="index.html">eligibility_csv</a></div><h1>Function <span class="fn">read_hackathon_registrants_csv</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../../src/judgeflow_backend/utils\eligibility/eligibility_csv.rs.html#195-262">Source</a> </span></div><pre class="rust item-decl"><code>fn read_hackathon_registrants_csv&lt;P: <a class="trait" href="https://doc.rust-lang.org/1.86.0/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/1.86.0/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;&gt;(
+    csv_path: P,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.86.0/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/1.86.0/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../../../data_models/eligibility_models/struct.EligibilityCheckInput.html" title="struct judgeflow_backend::data_models::eligibility_models::EligibilityCheckInput">EligibilityCheckInput</a>&gt;, <a class="struct" href="https://doc.rust-lang.org/1.86.0/alloc/boxed/struct.Box.html" title="struct alloc::boxed::Box">Box</a>&lt;dyn <a class="trait" href="https://doc.rust-lang.org/1.86.0/core/error/trait.Error.html" title="trait core::error::Error">Error</a>&gt;&gt;</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Parses a CSV file containing hackathon registrant data into <code>EligibilityCheckInput</code> records.</p>
+<p>This internal function handles the low-level CSV parsing and conversion of raw data into
+structured <code>EligibilityCheckInput</code> records that can be used for eligibility checking.</p>
+<h2 id="parameters"><a class="doc-anchor" href="#parameters">§</a>Parameters</h2>
+<ul>
+<li><code>csv_path</code> - Path to the CSV file containing registrant data.</li>
+</ul>
+<h2 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h2>
+<p>Returns a <code>Result</code> containing a vector of <code>EligibilityCheckInput</code> records on success.
+Returns an error if:</p>
+<ul>
+<li>The file cannot be read</li>
+<li>Required columns are missing</li>
+<li>The CSV format is invalid</li>
+</ul>
+<h2 id="implementation-details"><a class="doc-anchor" href="#implementation-details">§</a>Implementation Details</h2>
+<p>The function performs the following steps:</p>
+<ol>
+<li>Opens and parses the CSV file</li>
+<li>Validates that all required columns are present</li>
+<li>Processes each row, mapping CSV columns to <code>EligibilityCheckInput</code> fields</li>
+<li>Handles optional fields and data normalization</li>
+</ol>
+<h2 id="error-handling"><a class="doc-anchor" href="#error-handling">§</a>Error Handling</h2>
+<ul>
+<li>If required columns are missing, returns a descriptive error listing the missing columns</li>
+<li>If a row is malformed, returns an error with line number and details</li>
+<li>If the file cannot be read, returns the underlying I/O error</li>
+</ul>
+<h2 id="example"><a class="doc-anchor" href="#example">§</a>Example</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
+<span class="kw">use </span>judgeflow_backend::utils::eligibility::eligibility_csv::read_hackathon_registrants_csv;
+
+<span class="kw">fn </span>main() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>std::error::Error&gt;&gt; {
+    <span class="kw">let </span>participants = read_hackathon_registrants_csv(<span class="string">"data/participants.csv"</span>)<span class="question-mark">?</span>;
+    <span class="macro">println!</span>(<span class="string">"Parsed {} participants"</span>, participants.len());
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+<h2 id="csv-format-requirements"><a class="doc-anchor" href="#csv-format-requirements">§</a>CSV Format Requirements</h2>
+<p>The CSV file must include the following columns (case-sensitive):</p>
+<ul>
+<li><code>First Name</code> - Participant’s first name</li>
+<li><code>Last Name</code> - Participant’s last name</li>
+<li><code>Country</code> - Participant’s country of residence</li>
+<li><code>College/University Name</code> - Educational institution (optional)</li>
+<li><code>Portfolio Url</code> - URL to participant’s portfolio (optional)</li>
+<li><code>Project URLs</code> - Comma-separated list of project URLs (optional)</li>
+</ul>
+<h2 id="notes"><a class="doc-anchor" href="#notes">§</a>Notes</h2>
+<ul>
+<li>The function trims whitespace from all string fields</li>
+<li>Empty strings are converted to <code>None</code> for optional fields</li>
+<li>Multiple values in <code>Project URLs</code> should be comma-separated</li>
+</ul>
+</div></details></section></div></main></body></html>

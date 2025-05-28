@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["print_projects_info","process_projects_csv","process_projects_info","read_csv_flexible","transform_record"],"struct":["CsvProcessingError","Project","TeamMember"]};

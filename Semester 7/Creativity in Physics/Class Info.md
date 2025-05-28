@@ -1,0 +1,19 @@
+## Course Outline
+
+| **Week** | **Date**                 | **Topics**                                                                             | **Chapter reference** | **Evaluations**                                                      |
+| -------- | ------------------------ | -------------------------------------------------------------------------------------- | --------------------- | -------------------------------------------------------------------- |
+| 1        | Jan 7                    | -Introduction to course<br><br>-Intro to physics and creativity                        | Ch 1-2                |                                                                      |
+| 2        | Jan 14                   | -Describing motion<br><br>-Projectile motion<br><br>-Newton’s laws of motion           | Ch 3-5                | Online simulation 1 (7.5%) Newtonian mechanics – the laws of motion. |
+| 3        | Jan 21                   | -Planets and gravity<br><br>-Group research project intro<br><br>-Test 1 review        | Ch 6                  |                                                                      |
+| 4        | Jan 28                   | -Test 1                                                                                |                       | Online Test 1 (12.5%) – Ch 1 to 6                                    |
+| 5        | Feb 4                    | -Energy and oscillations<br><br>-Momentum and impulse<br><br>-Fluids                   | Ch 7-12               | Online simulation 2 (7.5%) Collisions – conservation of momentum.    |
+| 6        | Feb 11                   | -Temperature and heat<br><br>-Engines and laws of thermodynamics<br><br>-Test 2 review | Ch 13-15              |                                                                      |
+| 7        | Feb 18                   | -Test 2                                                                                |                       | Online Test 2 (12.5%) – Ch 7-15                                      |
+| Break    | Feb 24 – 28 – no classes |                                                                                        |                       |                                                                      |
+| 8        | Mar 4                    | -Electromagnetism<br><br>-Currents and circuits<br><br>-Electromagnetic waves          | Ch 18-24              | Online simulation 3 (7.5%) Electric circuits                         |
+| 9        | Mar 11                   | -Light and colour<br><br>-Image formation<br><br>-Test 3 review                        | Ch 25-27              |                                                                      |
+| 10       | Mar 18                   | -Test 3                                                                                |                       | Online Test 3 (12.5%) – Ch 18 to 27                                  |
+| 11       | Mar 25                   | -Atomic structure<br><br>-Nuclear physics                                              | Ch 29-32              | Online simulation 4 (7.5%) Optics                                    |
+| 12       | Apr 1                    | -Relativity<br><br>-Particle physics<br><br>-Test 4 review                             | Ch 28,33              |                                                                      |
+| 13       | Apr 8                    | -Group project presentations                                                           |                       | Group project (20%)                                                  |
+| 14       | Apr 15                   | -Test 4                                                                                |                       | Online Test 4 (12.5%) – Ch 28 to 33                                  |

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["insert_projects_to_supabase","insert_registrants_to_supabase","map_projects_info_to_db","map_registrants_to_db"]};

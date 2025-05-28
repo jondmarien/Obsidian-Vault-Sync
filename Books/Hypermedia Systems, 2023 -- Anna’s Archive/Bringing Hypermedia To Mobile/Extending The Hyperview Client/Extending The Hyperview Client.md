@@ -1,0 +1,7 @@
+# Extending The Hyperview Client
+
+In the previous chapter, we created a fully-featured native mobile version of our Contacts app. Aside from customizing the entry point URL, we didn’t need to touch any code that runs on the mobile device. We defined our mobile app’s UI and logic completely in the backend code, using Flask and HXML templates. This is possible because the standard Hyperview client supports all of the basic features by mobile apps.
+
+But the standard Hyperview client can’t do everything out of the box. As app developers, we want apps to have unique touches like custom UIs or deep integration with platform capabilities. To support these needs, the Hyperview client was designed to be extended with custom behavior actions and UI elements. In this section, we will enhance our mobile app with examples of both.
+
+Before diving in, let’s take a quick look at the tech stack we’ll be using. The Hyperview client is written in React Native, a popular cross-platform framework for creating mobile apps. It uses the same component-based API as React. This means developers familiar with JavaScript and React can quickly pick up React Native. React Native has a healthy ecosystem of open-source libraries. We’ll be leveraging these libraries to create our custom extensions to the Hyperview client.

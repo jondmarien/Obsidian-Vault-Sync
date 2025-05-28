@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Batch Eligibility Checking from CSV"><title>judgeflow_backend::utils::eligibility::eligibility_csv - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="judgeflow_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../../../static.files/storage-3a5871a4.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../judgeflow_backend/index.html">judgeflow_<wbr>backend</a><span class="version">0.2.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Module eligibility_<wbr>csv</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#batch-eligibility-checking-from-csv" title="Batch Eligibility Checking from CSV">Batch Eligibility Checking from CSV</a><ul><li><a href="#features" title="Features">Features</a></li><li><a href="#quick-start" title="Quick Start">Quick Start</a></li><li><a href="#csv-format" title="CSV Format">CSV Format</a></li><li><a href="#error-handling" title="Error Handling">Error Handling</a></li><li><a href="#performance" title="Performance">Performance</a></li></ul></li></ul><h3><a href="#functions">Module Items</a></h3><ul class="block"><li><a href="#functions" title="Functions">Functions</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="../index.html">In judgeflow_<wbr>backend::<wbr>utils::<wbr>eligibility</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../../index.html">judgeflow_backend</a>::<wbr><a href="../../index.html">utils</a>::<wbr><a href="../index.html">eligibility</a></div><h1>Module <span>eligibility_csv</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../../src/judgeflow_backend/utils\eligibility/eligibility_csv.rs.html#1-262">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="batch-eligibility-checking-from-csv"><a class="doc-anchor" href="#batch-eligibility-checking-from-csv">§</a>Batch Eligibility Checking from CSV</h2>
+<p>This module provides utilities for performing batch eligibility checks on participants
+whose data is stored in CSV files. It handles reading participant data, performing
+eligibility checks, and saving the results in a structured format.</p>
+<h3 id="features"><a class="doc-anchor" href="#features">§</a>Features</h3>
+<ul>
+<li>Read participant data from CSV files with flexible column mappings</li>
+<li>Perform batch eligibility checks using the configured rules</li>
+<li>Save detailed results to JSON files for further analysis</li>
+<li>Handle malformed CSV data with appropriate error messages</li>
+</ul>
+<h3 id="quick-start"><a class="doc-anchor" href="#quick-start">§</a>Quick Start</h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>judgeflow_backend::utils::eligibility::eligibility_csv::check_eligibility_from_csv_and_save;
+<span class="kw">use </span>std::path::Path;
+
+<span class="attr">#[tokio::main]
+</span><span class="kw">async fn </span>main() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>std::error::Error&gt;&gt; {
+    <span class="comment">// Path to your input CSV file
+    </span><span class="kw">let </span>csv_path = Path::new(<span class="string">"participants.csv"</span>);
+     
+    <span class="comment">// Path where the JSON results will be saved
+    </span><span class="kw">let </span>output_path = Path::new(<span class="string">"eligibility_results.json"</span>);
+     
+    <span class="comment">// Process the CSV and save results
+    </span><span class="kw">let </span>results = check_eligibility_from_csv_and_save(csv_path, output_path).<span class="kw">await</span><span class="question-mark">?</span>;
+     
+    <span class="macro">println!</span>(<span class="string">"Processed {} participants"</span>, results.len());
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+<h3 id="csv-format"><a class="doc-anchor" href="#csv-format">§</a>CSV Format</h3>
+<p>The CSV file should have headers that map to the <code>EligibilityCheckInput</code> fields.
+The following columns are recognized (case-insensitive):</p>
+<ul>
+<li><code>name</code> or <code>participant_name</code>: Participant’s full name</li>
+<li><code>email</code> or <code>participant_email</code>: Participant’s email address</li>
+<li><code>age</code> or <code>participant_age</code>: Participant’s age (optional)</li>
+<li><code>country</code> or <code>participant_country</code>: Participant’s country (optional)</li>
+<li><code>employment_status</code> or <code>participant_employment_status</code>: Employment status (optional)</li>
+<li>Any additional columns will be included in the <code>additional_data</code> field</li>
+</ul>
+<h3 id="error-handling"><a class="doc-anchor" href="#error-handling">§</a>Error Handling</h3>
+<p>This module returns <code>Result</code> types with detailed error information if something goes wrong
+during CSV parsing or eligibility checking. Errors include:</p>
+<ul>
+<li>File I/O errors</li>
+<li>Malformed CSV data</li>
+<li>Eligibility check failures</li>
+</ul>
+<h3 id="performance"><a class="doc-anchor" href="#performance">§</a>Performance</h3>
+<p>For large CSV files, consider processing in batches to manage memory usage.
+The module is designed to be memory-efficient when processing large datasets.</p>
+</div></details><h2 id="functions" class="section-header">Functions<a href="#functions" class="anchor">§</a></h2><dl class="item-table"><dt><a class="fn" href="fn.check_eligibility_from_csv_and_save.html" title="fn judgeflow_backend::utils::eligibility::eligibility_csv::check_eligibility_from_csv_and_save">check_<wbr>eligibility_<wbr>from_<wbr>csv_<wbr>and_<wbr>save</a></dt><dd>Processes a CSV file of participants, runs eligibility checks, and saves results to a JSON file.</dd><dt><a class="fn" href="fn.read_hackathon_registrants_csv.html" title="fn judgeflow_backend::utils::eligibility::eligibility_csv::read_hackathon_registrants_csv">read_<wbr>hackathon_<wbr>registrants_<wbr>csv</a><span title="Restricted Visibility">&nbsp;🔒</span> </dt><dd>Parses a CSV file containing hackathon registrant data into <code>EligibilityCheckInput</code> records.</dd></dl></section></div></main></body></html>

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["RoleType"],"fn":["deserialize_naive_date_time","validate_naive_date_time","validate_uuid"],"struct":["User","UserDTO","UserInterests","UserRole","UserSkills"]};

@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Handles the upload and processing of combined CSV files for projects and registrants."><title>handle_combined_csv_upload in judgeflow_backend::services::import_service - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="judgeflow_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../../static.files/storage-3a5871a4.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../judgeflow_backend/index.html">judgeflow_<wbr>backend</a><span class="version">0.2.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">handle_<wbr>combined_<wbr>csv_<wbr>upload</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#arguments" title="Arguments">Arguments</a></li><li><a href="#returns" title="Returns">Returns</a></li><li><a href="#errors" title="Errors">Errors</a></li><li><a href="#example" title="Example">Example</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In judgeflow_<wbr>backend::<wbr>services::<wbr>import_<wbr>service</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">judgeflow_backend</a>::<wbr><a href="../index.html">services</a>::<wbr><a href="index.html">import_service</a></div><h1>Function <span class="fn">handle_combined_csv_upload</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/judgeflow_backend/services/import_service.rs.html#238-300">Source</a> </span></div><pre class="rust item-decl"><code>pub async fn handle_combined_csv_upload(
+    multipart: Multipart,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.86.0/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;impl IntoResponse, impl IntoResponse&gt;</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Handles the upload and processing of combined CSV files for projects and registrants.</p>
+<p>This function processes a multipart form data request containing two CSV files:</p>
+<ol>
+<li><code>projects</code> - Contains project information</li>
+<li><code>registrants</code> - Contains registrant information</li>
+</ol>
+<h2 id="arguments"><a class="doc-anchor" href="#arguments">§</a>Arguments</h2>
+<ul>
+<li><code>multipart</code> - A <code>Multipart</code> instance containing the form data with CSV files</li>
+</ul>
+<h2 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h2>
+<ul>
+<li><code>Result&lt;impl IntoResponse, impl IntoResponse&gt;</code> - A result containing either:
+<ul>
+<li><code>Ok(Response)</code> - A success response with processing statistics</li>
+<li><code>Err(Response)</code> - An error response with an appropriate status code and message</li>
+</ul>
+</li>
+</ul>
+<h2 id="errors"><a class="doc-anchor" href="#errors">§</a>Errors</h2>
+<p>Returns an error response with <code>400 Bad Request</code> if:</p>
+<ul>
+<li>No files are provided</li>
+<li>Required files are missing</li>
+<li>Files are not valid CSV format</li>
+<li>Files cannot be read</li>
+</ul>
+<h2 id="example"><a class="doc-anchor" href="#example">§</a>Example</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>axum::{
+    body::Bytes,
+    extract::Multipart,
+    http::StatusCode,
+};
+<span class="kw">use </span>judgeflow_backend::services::import_service::handle_combined_csv_upload;
+
+<span class="comment">// In a real scenario, this would come from an HTTP request
+</span><span class="kw">let </span>boundary = <span class="string">"boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"</span>;
+<span class="kw">let </span>body = <span class="macro">format!</span>(
+    <span class="string">"--{boundary}\r\n\
+     Content-Disposition: form-data; name=\"projects\"; filename=\"projects.csv\"\r\n\
+     Content-Type: text/csv\r\n\r\n\
+     id,name,description\r\n\
+     1,Project A,Description A\r\n\
+     2,Project B,Description B\r\n\
+     --{boundary}--"
+</span>);
+
+<span class="kw">let </span>multipart = Multipart::new()
+    .boundary(boundary)
+    .part(<span class="string">"projects"</span>, body.into());
+
+<span class="kw">let </span>response = handle_combined_csv_upload(multipart).<span class="kw">await</span><span class="question-mark">?</span>;
+<span class="comment">// Process the response...</span></code></pre></div>
+</div></details></section></div></main></body></html>

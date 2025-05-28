@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["check_eligibility_from_csv_and_save","read_hackathon_registrants_csv"]};

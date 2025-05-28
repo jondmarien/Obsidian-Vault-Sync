@@ -1,0 +1,14 @@
+# The State of Mobile App Development
+
+Before we can discuss how to apply hypermedia to mobile platforms, we need to understand how native mobile apps are commonly built. I’m using the word “native” to refer to code written against an SDK provided by the phone’s operating system (typically Android or iOS). This code is packaged into an executable binary, and uploaded & approved through app stores controlled by Google and Apple. When users install or update an app, they’re downloading this executable and running the code directly on their device’s OS. In this way, mobile apps have a lot in common with old-school desktop apps for Mac, Windows, or Linux. There is one important difference between PC desktop apps of yesteryear and today’s mobile apps. These days, almost all mobile apps are “networked”. By networked, we mean the app needs to read and write data over the Internet to deliver its core functionality. In other words, a networked mobile app needs to implement the client-server architecture.
+
+When implementing the client-server architecture, the developer needs to make a decision: Should the app be designed as a thin client or thick client? The current mobile ecosystems strongly push developers towards a thick-client approach. Why? Remember, Android and iOS require that a native mobile app be packaged and distributed as an executable binary. There’s no way around it. Since the developer needs to write code to package into an executable, it seems logical to implement some of the app’s logic in that code. The code may as well initiate HTTP calls to the server to retrieve data, and then render that data using the platform’s UI libraries. Thus, developers are naturally led into a thick-client pattern that looks something like this:
+
+*   The client contains code to make API requests to the server, and code to translate those responses to UI updates
+    
+*   The server implements an HTTP API that speaks JSON, and knows little about the state of the client
+    
+
+Just like with SPAs on the web, this architecture has a big downside: the app’s logic gets spread across the client and server. Sometimes, this means that logic gets duplicated (like to validate form data). Other times, the client and server each implement disjoint parts of the app’s overall logic. To understand what the app does, a developer needs to trace interactions between two very different codebases.
+
+There’s another downside that affects mobile apps more than SPAs: API churn. Remember, the app stores control how your app gets distributed and updated. Users can even control if and when they get updated versions of your app. As a mobile developer, you can’t assume that every user will be on the latest version of your app. Your frontend code gets fragmented across many versions, and now your backend needs to support all of them.

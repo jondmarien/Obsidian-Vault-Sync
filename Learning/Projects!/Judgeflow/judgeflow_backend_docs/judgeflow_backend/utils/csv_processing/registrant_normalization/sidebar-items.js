@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["normalize_and_print_registrants","title_case","truncate"],"struct":["Registrant"]};

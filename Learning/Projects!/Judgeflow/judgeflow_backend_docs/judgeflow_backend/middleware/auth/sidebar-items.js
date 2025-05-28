@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["auth_middleware","extract_token","validate_token"],"struct":["ClerkClaims"]};

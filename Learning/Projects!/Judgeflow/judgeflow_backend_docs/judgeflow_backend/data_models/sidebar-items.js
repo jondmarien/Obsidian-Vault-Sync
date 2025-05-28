@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["eligibility_models","hackathon_models","project_models","screening_models","thread_models","user_models","waitlist_models"]};

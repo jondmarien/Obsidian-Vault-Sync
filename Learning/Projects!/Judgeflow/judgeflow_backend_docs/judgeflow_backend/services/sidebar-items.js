@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["devpost_service","discord_service","eligibility_service","import_service","resource_service","s3_service","sync_service","user_service","waitlist_service","webhook_service"]};

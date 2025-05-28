@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["read_csv_records","write_csv_records"],"mod":["country_normalization","fix_csv","project_processing","registrant_normalization"],"struct":["EligibilityCheckInput"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["s3_router","upload_handler"]};

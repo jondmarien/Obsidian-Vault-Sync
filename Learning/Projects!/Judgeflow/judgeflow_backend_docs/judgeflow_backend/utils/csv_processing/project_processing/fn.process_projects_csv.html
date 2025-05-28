@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Processes a CSV file containing project submissions into structured `Project` objects."><title>process_projects_csv in judgeflow_backend::utils::csv_processing::project_processing - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="judgeflow_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../../../static.files/storage-3a5871a4.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../judgeflow_backend/index.html">judgeflow_<wbr>backend</a><span class="version">0.2.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">process_<wbr>projects_<wbr>csv</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#arguments" title="Arguments">Arguments</a></li><li><a href="#returns" title="Returns">Returns</a></li><li><a href="#errors" title="Errors">Errors</a></li><li><a href="#example-basic-usage" title="Example: Basic Usage">Example: Basic Usage</a></li><li><a href="#example-error-handling" title="Example: Error Handling">Example: Error Handling</a></li><li><a href="#implementation-details" title="Implementation Details">Implementation Details</a></li><li><a href="#performance-considerations" title="Performance Considerations">Performance Considerations</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In judgeflow_<wbr>backend::<wbr>utils::<wbr>csv_<wbr>processing::<wbr>project_<wbr>processing</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../../index.html">judgeflow_backend</a>::<wbr><a href="../../index.html">utils</a>::<wbr><a href="../index.html">csv_processing</a>::<wbr><a href="index.html">project_processing</a></div><h1>Function <span class="fn">process_projects_csv</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../../src/judgeflow_backend/utils\csv_processing/project_processing.rs.html#312-356">Source</a> </span></div><pre class="rust item-decl"><code>pub fn process_projects_csv(
+    csv_path: &amp;<a class="struct" href="https://doc.rust-lang.org/1.86.0/std/path/struct.Path.html" title="struct std::path::Path">Path</a>,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.86.0/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/1.86.0/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.Project.html" title="struct judgeflow_backend::utils::csv_processing::project_processing::Project">Project</a>&gt;, <a class="struct" href="struct.CsvProcessingError.html" title="struct judgeflow_backend::utils::csv_processing::project_processing::CsvProcessingError">CsvProcessingError</a>&gt;</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Processes a CSV file containing project submissions into structured <code>Project</code> objects.</p>
+<p>This is the main entry point for processing project data from CSV files. It handles:</p>
+<ul>
+<li>Reading and parsing the CSV file</li>
+<li>Transforming raw records into structured data</li>
+<li>Deduplicating projects based on submission URL</li>
+<li>Merging team members from duplicate entries</li>
+<li>Validating required fields</li>
+</ul>
+<h2 id="arguments"><a class="doc-anchor" href="#arguments">§</a>Arguments</h2>
+<ul>
+<li><code>csv_path</code> - A reference to a <code>Path</code> containing the CSV file to process</li>
+</ul>
+<h2 id="returns"><a class="doc-anchor" href="#returns">§</a>Returns</h2>
+<ul>
+<li><code>Result&lt;Vec&lt;Project&gt;, CsvProcessingError&gt;</code> - A vector of <code>Project</code> structs on success,
+or a <code>CsvProcessingError</code> if any step fails.</li>
+</ul>
+<h2 id="errors"><a class="doc-anchor" href="#errors">§</a>Errors</h2>
+<p>Returns an error in the following cases:</p>
+<ul>
+<li>The file cannot be opened or read (<code>std::io::Error</code>)</li>
+<li>The CSV is malformed or has invalid UTF-8 (<code>csv::Error</code>)</li>
+<li>Required fields are missing or invalid (<code>CsvProcessingError</code>)</li>
+<li>There are issues with data transformation</li>
+</ul>
+<h2 id="example-basic-usage"><a class="doc-anchor" href="#example-basic-usage">§</a>Example: Basic Usage</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
+<span class="kw">use </span>judgeflow_backend::utils::csv_processing::project_processing;
+
+<span class="comment">// Process a CSV file
+</span><span class="kw">let </span>projects = project_processing::process_projects_csv(Path::new(<span class="string">"data/projects.csv"</span>))<span class="question-mark">?</span>;
+ 
+<span class="comment">// Output summary
+</span><span class="macro">println!</span>(<span class="string">"Successfully processed {} projects"</span>, projects.len());
+ 
+<span class="comment">// Count total team members
+</span><span class="kw">let </span>total_team_members: usize = projects.iter()
+    .map(|p| p.team_members.len())
+    .sum();
+     
+<span class="macro">println!</span>(<span class="string">"Total team members across all projects: {}"</span>, total_team_members);</code></pre></div>
+<h2 id="example-error-handling"><a class="doc-anchor" href="#example-error-handling">§</a>Example: Error Handling</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
+<span class="kw">use </span>judgeflow_backend::utils::csv_processing::project_processing;
+
+<span class="kw">match </span>project_processing::process_projects_csv(Path::new(<span class="string">"nonexistent.csv"</span>)) {
+    <span class="prelude-val">Ok</span>(projects) =&gt; {
+        <span class="macro">println!</span>(<span class="string">"Processed {} projects"</span>, projects.len());
+    }
+    <span class="prelude-val">Err</span>(e) =&gt; {
+        <span class="macro">eprintln!</span>(<span class="string">"Failed to process projects: {}"</span>, e);
+        <span class="comment">// Handle the error appropriately
+    </span>}
+}</code></pre></div>
+<h2 id="implementation-details"><a class="doc-anchor" href="#implementation-details">§</a>Implementation Details</h2>
+<ol>
+<li>Reads the entire file into memory for processing</li>
+<li>Uses <code>read_csv_flexible</code> to handle various CSV formats</li>
+<li>Transforms each record into a <code>Project</code> using <code>transform_record</code></li>
+<li>Deduplicates projects by submission URL</li>
+<li>Merges team members from duplicate entries</li>
+<li>Validates the final list of projects</li>
+</ol>
+<h2 id="performance-considerations"><a class="doc-anchor" href="#performance-considerations">§</a>Performance Considerations</h2>
+<ul>
+<li>The entire file is loaded into memory, which may be an issue for very large files</li>
+<li>For processing large files, consider streaming or batch processing</li>
+<li>Deduplication is done in-memory using a <code>HashMap</code></li>
+</ul>
+</div></details></section></div></main></body></html>

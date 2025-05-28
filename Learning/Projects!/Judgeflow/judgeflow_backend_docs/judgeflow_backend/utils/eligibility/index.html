@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Eligibility Module"><title>judgeflow_backend::utils::eligibility - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="judgeflow_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../../static.files/storage-3a5871a4.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../judgeflow_backend/index.html">judgeflow_<wbr>backend</a><span class="version">0.2.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Module eligibility</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#eligibility-module" title="Eligibility Module">Eligibility Module</a><ul><li><a href="#features" title="Features">Features</a></li><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#quick-start" title="Quick Start">Quick Start</a></li><li><a href="#data-models" title="Data Models">Data Models</a></li></ul></li></ul><h3><a href="#modules-1">Module Items</a></h3><ul class="block"><li><a href="#modules-1" title="Modules">Modules</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="../index.html">In judgeflow_<wbr>backend::<wbr>utils</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">judgeflow_backend</a>::<wbr><a href="../index.html">utils</a></div><h1>Module <span>eligibility</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/judgeflow_backend/utils\eligibility/mod.rs.html#1-56">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="eligibility-module"><a class="doc-anchor" href="#eligibility-module">§</a>Eligibility Module</h2>
+<p>This module provides functionality for checking the eligibility of hackathon participants
+based on various criteria such as age, location, employment status, and more.</p>
+<h3 id="features"><a class="doc-anchor" href="#features">§</a>Features</h3>
+<ul>
+<li>Individual eligibility checks for different criteria</li>
+<li>Batch processing of participants from CSV files</li>
+<li>Configurable eligibility rules</li>
+<li>Detailed result reporting</li>
+</ul>
+<h3 id="modules"><a class="doc-anchor" href="#modules">§</a>Modules</h3>
+<ul>
+<li><code>eligibility_checks</code>: Core functionality for individual eligibility checks</li>
+<li><code>eligibility_csv</code>: Utilities for batch processing participants from CSV files</li>
+</ul>
+<h3 id="quick-start"><a class="doc-anchor" href="#quick-start">§</a>Quick Start</h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>judgeflow_backend::utils::eligibility::{
+    EligibilityCheckInput, EligibilityConfig,
+    eligibility_checks::perform_all_checks,
+    eligibility_csv::check_eligibility_from_csv_and_save
+};
+<span class="kw">use </span>std::collections::HashMap;
+
+<span class="attr">#[tokio::main]
+</span><span class="kw">async fn </span>main() -&gt; <span class="prelude-ty">Result</span>&lt;(), Box&lt;<span class="kw">dyn </span>std::error::Error&gt;&gt; {
+    <span class="comment">// For individual checks
+    </span><span class="kw">let </span>input = EligibilityCheckInput {
+        participant_name: <span class="string">"John Doe"</span>.to_string(),
+        participant_email: <span class="string">"john@example.com"</span>.to_string(),
+        participant_age: <span class="prelude-val">Some</span>(<span class="number">22</span>),
+        participant_country: <span class="prelude-val">Some</span>(<span class="string">"Canada"</span>.to_string()),
+        participant_employment_status: <span class="prelude-val">Some</span>(<span class="string">"Student"</span>.to_string()),
+        additional_data: HashMap::new(),
+    };
+
+    <span class="kw">let </span>config = EligibilityConfig::default();
+    <span class="kw">let </span>results = perform_all_checks(<span class="kw-2">&amp;</span>input, <span class="kw-2">&amp;</span>config).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="comment">// For batch processing from CSV
+    </span>check_eligibility_from_csv_and_save(
+        <span class="string">"data/participants.csv"</span>,
+        <span class="string">"results/eligibility_results.json"
+    </span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+<h3 id="data-models"><a class="doc-anchor" href="#data-models">§</a>Data Models</h3>
+<ul>
+<li><code>EligibilityCheckInput</code>: Contains participant data for eligibility checking</li>
+<li><code>EligibilityCheckResult</code>: Contains the result of an eligibility check</li>
+<li><code>EligibilityConfig</code>: Configuration for eligibility checking rules</li>
+</ul>
+</div></details><h2 id="modules-1" class="section-header">Modules<a href="#modules-1" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="eligibility_checks/index.html" title="mod judgeflow_backend::utils::eligibility::eligibility_checks">eligibility_<wbr>checks</a></dt><dd>Eligibility Checks Module</dd><dt><a class="mod" href="eligibility_csv/index.html" title="mod judgeflow_backend::utils::eligibility::eligibility_csv">eligibility_<wbr>csv</a></dt><dd>Batch Eligibility Checking from CSV</dd></dl></section></div></main></body></html>

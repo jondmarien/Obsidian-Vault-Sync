@@ -1,0 +1,20 @@
+# Folders to not upload
+Job*Applications/
+Clipper
+Daily*Notes/
+For*Fun/
+ISSessions/24-25 Apps/
+ISSessions/25-26 Apps/
+D-Sports/
+
+# dot folders
+.trash/
+.git/
+.obsidian/
+# Additional folders to ignore
+ISSessions/CTF 2025/CTFd-Live-Scoreboard/
+Learning/Projects!/ChronoCalCalc/
+Learning/Writeup-Vault/
+
+# Large files exceeding GitHub limits
+Semester 8/Adv. Topics in ISS/Jupyter Notebooks/Assignments/Assignment 2/test.jsonl

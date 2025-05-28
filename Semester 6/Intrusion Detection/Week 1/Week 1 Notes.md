@@ -1,0 +1,56 @@
+**Freeware Tools
+- Wireshark
+- tcpshow
+	- "tcpdump -enx | tcpshow -nolink"
+		- -e: mac address
+		- -n: no resolution
+		- -x: show hex
+			- pipe it all into tcpshow and you get the output below
+			- -nolink: doesn't show layer 2
+	- "tcpdump -X" (ASCII)
+		- "tcpdump -x" (HEX)
+		- -xX for hex and ascii
+	- tcpshow output![[tcpshow.png]]
+**Packet Dissection**
+- NIDS generated false positives
+- You may need to look at the hex output
+	- Sidestep
+		- a way to demonstrate that IDS (Intrusion Detection System) must be protocol aware, not just an network grep
+	**Normal Query**
+	- "07version04bind"
+	- 07 are 04 are called labels, they simply tell how many characters are found in the following node![[breakdown 0.png]]
+	- ![[version.png]]
+	**Evasive Query**
+	- Without Sidestep![[Version and Bind.png]]
+	- Using Sidestep![[Pasted image 20240112121011.png]]
+	- **IHL (Header Length)**
+		- 4 bits long
+		- Max value is 2^4 = 16
+		- Actual header length equals the IHL * 4
+		- Expressed in 32 bit words
+	- **IP Datagram
+		- Expressed in bytes
+		- Convert 0x0054 from hex to decimal
+			- (5 x 16) + (4 x 1) =84
+	- **Snaplen
+		- only see 54 bytes of output, even though the default snaplen is 68 bytes
+			- use "tcmpdump -s 1514"
+	- **Dissecting the Whole 
+		- Identify the embedded protocol (9th byte offset of the IP Header)
+		- Identify where the header stops and the embedded header begins (IHL)
+		- Examine the embedded protocol header length
+		- Example 1:
+			- ![[breakdown 1.png]]
+				- IP Header Length = 5 * 4 = 20 bytes
+				- IP protocol = 1 (ICMP)
+				- ICMP Message type = 0, code = 0
+				- This is an ICMP echo (ping) reply
+		- Example 2:
+			- ![[breakdown 2.png]]
+				- IP Header Length = 5 * 4 = 20 bytes
+				- IP protocol = 6 (TCP)
+				- TCP header length = 7 * 4 = 28 bytes
+				- TCP destination port = 0x0015 = 21
+				- There are optional fields, the IHL is longer than 20 bytes (28)
+				- This is probably part of an FTP session
+

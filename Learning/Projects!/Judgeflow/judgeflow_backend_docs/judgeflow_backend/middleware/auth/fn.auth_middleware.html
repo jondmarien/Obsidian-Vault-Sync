@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Axum middleware for authenticating requests using Clerk JWT tokens."><title>auth_middleware in judgeflow_backend::middleware::auth - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-6c3ea77c.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="judgeflow_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.86.0 (05f9846f8 2025-03-31)" data-channel="1.86.0" data-search-js="search-581efc7a.js" data-settings-js="settings-6dad6058.js" ><script src="../../../static.files/storage-3a5871a4.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-4d63596a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../judgeflow_backend/index.html">judgeflow_<wbr>backend</a><span class="version">0.2.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">auth_<wbr>middleware</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#development-bypass" title="Development Bypass">Development Bypass</a></li><li><a href="#errors" title="Errors">Errors</a></li><li><a href="#example" title="Example">Example</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="index.html">In judgeflow_<wbr>backend::<wbr>middleware::<wbr>auth</a></h2></div></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">judgeflow_backend</a>::<wbr><a href="../index.html">middleware</a>::<wbr><a href="index.html">auth</a></div><h1>Function <span class="fn">auth_middleware</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/judgeflow_backend/middleware/auth.rs.html#192-224">Source</a> </span></div><pre class="rust item-decl"><code>pub async fn auth_middleware(
+    req: Request,
+    next: Next,
+) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.86.0/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;Response, Response&gt;</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Axum middleware for authenticating requests using Clerk JWT tokens.</p>
+<p>This middleware:</p>
+<ol>
+<li>Extracts the JWT from the Authorization header</li>
+<li>Validates the token using Clerk’s public key</li>
+<li>Looks up the user in the database</li>
+<li>Injects the user into the request extensions</li>
+</ol>
+<h2 id="development-bypass"><a class="doc-anchor" href="#development-bypass">§</a>Development Bypass</h2>
+<p>Requests with <code>X-Dev-Bypass: true</code> header will skip authentication.
+This should only be enabled in development environments.</p>
+<h2 id="errors"><a class="doc-anchor" href="#errors">§</a>Errors</h2>
+<p>Returns <code>401 Unauthorized</code> for:</p>
+<ul>
+<li>Missing or invalid Authorization header</li>
+<li>Invalid or expired token</li>
+<li>Unauthorized party (azp)</li>
+</ul>
+<h2 id="example"><a class="doc-anchor" href="#example">§</a>Example</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>axum::{Router, routing::get};
+<span class="kw">use </span><span class="kw">crate</span>::middleware::auth::auth_middleware;
+
+<span class="kw">let </span>app = Router::new()
+    .route(<span class="string">"/protected"</span>, get(protected_handler))
+    .layer(middleware::from_fn(auth_middleware));</code></pre></div>
+</div></details></section></div></main></body></html>

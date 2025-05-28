@@ -1,0 +1,12 @@
+# Building A Contacts App With Hyperview
+
+Earlier chapters in this book explained the benefits of building apps using the hypermedia architecture. These benefits were demonstrated by building a robust Contacts web application. Then, Chapter 11 argued that hypermedia concepts can and should be applied to platforms other than the web. We introduced Hyperview as an example of a hypermedia format and client specifically designed for building mobile apps. But you may still be wondering: what is it like to create a fully-featured, production-ready mobile app using Hyperview? Do we have to learn a whole new language and framework? In this chapter, we will show Hyperview in action by porting the Contacts web app to a native mobile app. You will see that many web development techniques (and indeed, much of the code) are completely identical when developing with Hyperview. How is that possible?
+
+1.  Our Contacts web app was built with the principle of HATEOAS (Hypermedia as the Engine of Application State). All of the app’s features (retrieving, searching, editing, and creating contacts) are implemented in the backend (the `Contacts` Python class). Our mobile app, built with Hyperview, also leverages HATEOAS and relies on the backend for all of the app’s logic. That means the `Contacts` Python class can power our mobile app the same way it powers the web app, without any changes required.
+    
+2.  The client-server communication in the web app happens using HTTP. The HTTP server for our web app is written using the Flask framework. Hyperview also uses HTTP for client-server communication. So we can re-use the Flask routes and views from the web app for the mobile app as well.
+    
+3.  The web app uses HTML for its hypermedia format, and Hyperview uses HXML. HTML and HXML are different formats, but the base syntax is similar (nested tags with attributes). This means we can use the same templating library (Jinja) for HTML and HXML. Additionally, many of the concepts of htmx are built into HXML. We can directly port web app features implemented with htmx (search, infinite loading) to HXML.
+    
+
+Essentially, we can re-use almost everything from the web app backend, but we will need to replace the HTML templates with HXML templates. Most of the sections in this chapter will assume we have the web contacts app running locally and listening on port 5000. Ready? Let’s create new HXML templates for our mobile app’s UI.

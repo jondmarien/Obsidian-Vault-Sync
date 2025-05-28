@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["MessageContent"],"fn":["check_affiliations","check_age","check_employment","check_geography","generic_check","query_sonar"],"struct":["AssistantContent","Choice","ExplanationWithSource","Fact","Message","SonarPplx","SonarRequest","SonarResponse"],"trait":["SonarPplxTrait"]};

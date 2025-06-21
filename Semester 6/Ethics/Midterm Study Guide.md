@@ -1,3 +1,16 @@
+---
+title: Midterm Study Guide
+author: Jon Marien
+created: 2025-06-18
+published: 2025-06-18
+tags: 
+---
+
+| Title               | Author     | Created       | Published     | Tags |
+| ------------------- | ---------- | ------------- | ------------- | ---- |
+| Midterm Study Guide | Jon Marien | June 18, 2025 | June 18, 2025 | \-   |
+
+
 # Study Guide
 
 #### Key Concepts:
@@ -97,4 +110,4 @@
 ## Ethics Differences
 **Sociological**: how tech affects society
 **Philosophical**: how tech changes society and our moral values, and how we should make rules for tech ethically
-**Professional**: The right away to act professionally 
+**Professional**: The right away to act professionally

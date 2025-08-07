@@ -1,3 +1,8 @@
-Mythril, Slither, and Oyente, Hardhat, 
+---
+title: Untitled
+author: Jon Marien
+created: 2025-06-26
+published: 2025-06-26
+tags: ---
+---
 
-XYZ Blockchain Tester, ABC CryptoScanner, PQR ChainProbe -> bruh these are alll fake and not real wtf?

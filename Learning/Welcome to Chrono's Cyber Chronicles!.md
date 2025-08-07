@@ -15,13 +15,13 @@ description: Where code meets creativity — and every bug has a story.
 
 ## Recently Updated Notes @ 2025-03-23 04:37
 
-| Title                                                                                             | Author                       | Created           | Published         | Tags                                          |
-| ------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------- | ----------------- | --------------------------------------------- |
-| [POC Analysis](POC%20Analysis.md)                                                                 | <ul><li>Jon Marien</li></ul> | March 23, 2025    | March 23, 2025    | <ul><li>classes</li></ul>                     |
-| [Comprehensive Cryptology Review Weeks 1-4](Comprehensive%20Cryptology%20Review%20Weeks%201-4.md) | <ul><li>Jon Marien</li></ul> | February 15, 2025 | February 15, 2025 | <ul><li>classes</li></ul>                     |
-| [Fast Secure Roaming](Fast%20Secure%20Roaming.md)                                                 | <ul><li>Jon Marien</li></ul> | March 20, 2025    | March 20, 2025    | <ul><li>classes</li><li>SYST44998</li></ul>   |
-| [Bed Hack v0.3](Bed%20Hack%20v0.3.md)                                                             | <ul><li>Jon Marien</li></ul> | March 19, 2025    | March 19, 2025    | <ul><li>issessions</li><li>writeups</li></ul> |
-| [Malicious .lnk Files on Windows](Malicious%20.lnk%20Files%20on%20Windows.md)]                    | <ul><li>Jon Marien</li></ul> | March 19, 2025    | March 19, 2025    | <ul><li>issessions</li><li>writeups</li></ul> |
+| Title                                                                                                                             | Author                       | Created        | Published      | Tags                                                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | -------------- | -------------- | ------------------------------------------------------------------------------------------- |
+| [Module 6 - Networking Pentesting - Internal - Part 3](Module%206%20-%20Networking%20Pentesting%20-%20Internal%20-%20Part%203.md) | <ul><li>Jon Marien</li></ul> | June 20, 2025  | June 20, 2025  | <ul><li>skillsontario</li><li>competitions</li><li>certifications</li><li>classes</li></ul> |
+| [POC Analysis](POC%20Analysis.md)                                                                                                 | <ul><li>Jon Marien</li></ul> | March 23, 2025 | March 23, 2025 | <ul><li>classes</li></ul>                                                                   |
+| [Fast Secure Roaming](Fast%20Secure%20Roaming.md)                                                                                 | <ul><li>Jon Marien</li></ul> | March 20, 2025 | March 20, 2025 | <ul><li>classes</li><li>SYST44998</li></ul>                                                 |
+| [Bed Hack v0.3](Bed%20Hack%20v0.3.md)                                                                                             | <ul><li>Jon Marien</li></ul> | March 19, 2025 | March 19, 2025 | <ul><li>issessions</li><li>writeups</li></ul>                                               |
+| [Malicious .lnk Files on Windows](Malicious%20.lnk%20Files%20on%20Windows.md)]                                                    | <ul><li>Jon Marien</li></ul> | March 19, 2025 | March 19, 2025 | <ul><li>issessions</li><li>writeups</li></ul>                                               |
 
 # Unlocking the future, one exploit at a time.
 ---------------
